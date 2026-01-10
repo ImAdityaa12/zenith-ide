@@ -2,11 +2,7 @@ import type { Metadata } from "next";
 import { IBM_Plex_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import {
-  ClerkProvider,
-} from '@clerk/nextjs'
-import { dark } from "@clerk/themes";
-import { ConvexClientProvider } from "@/components/ConvexClientProvider";
+import { Providers } from "@/components/providers";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -28,27 +24,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider
-      appearance={{
-        theme: dark
-      }}
-    >
-      <html lang="en" suppressHydrationWarning>
-        <body
-          className={`${inter.variable} ${plexMono.variable} antialiased`}
+
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${inter.variable} ${plexMono.variable} antialiased`}
+      >
+        <ThemeProvider
+          attribute={"class"}
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
         >
-          <ThemeProvider
-            attribute={"class"}
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <ConvexClientProvider>
-              {children}
-            </ConvexClientProvider>
-          </ThemeProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+          <Providers>
+            {children}
+          </Providers>
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }
