@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import {
   ClerkProvider,
 } from '@clerk/nextjs'
+import { dark } from "@clerk/themes";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -26,7 +27,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        theme: dark
+      }}
+    >
       <html lang="en" suppressHydrationWarning>
         <body
           className={`${inter.variable} ${plexMono.variable} antialiased`}
