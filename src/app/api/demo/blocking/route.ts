@@ -1,9 +1,5 @@
-import { createGoogleGenerativeAI } from '@ai-sdk/google';
+import { google } from '@ai-sdk/google';
 import { generateText } from 'ai';
-
-const google = createGoogleGenerativeAI({
-    apiKey: process.env.GEMINI_KEY
-})
 
 export async function POST() {
     const response = await generateText({
