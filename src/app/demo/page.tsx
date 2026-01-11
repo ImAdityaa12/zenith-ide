@@ -1,0 +1,22 @@
+"use client"
+
+import { Button } from "@/components/ui/button"
+
+const page = () => {
+    const handleBlocking = async () => {
+        await fetch("/api/demo/blocking", {
+            method: "POST"
+        })
+    }
+    return (
+        <div className="p-8 space-x-4">
+            <Button
+                onClick={handleBlocking}
+            >
+                Blocking
+            </Button>
+        </div>
+    )
+}
+
+export default page
